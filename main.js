@@ -1,7 +1,7 @@
-function addToStorage(event) {
-  let num = event.target.innerText
+function addStringToStorage(event) {
+  let number = event.target.innerText
   //store number in an array
-  numberStorage.push(Number)
+  numberStorage.push(number)
   console.log(numberStorage);
 }
 
@@ -10,22 +10,116 @@ function clearNumStorage() {
 }
 
 // show number in display
-//-[9, 4, 2] would be 942
+//[9, 4, 2] would be 942
 
-function display() {
-  let numDisplayed = numberStorage
+function renderDisplay() {
+  let numbersDisplayed = numberStorage.join("")
+  answerElement.innerText = numbersDisplayed
 }
 
+function handleNumberOrOperatorClick(event) {
+  addStringToStorage(event)
+  renderDisplay()
+}
+
+let buttonContainer = document.querySelector('.numbers');
+let answerElement = document.querySelector('#answer');
+
+buttonContainer.addEventListener('click',
+handleNumberOrOperatorClick);
+
+//empty array for stored numbers
+let numberStorage = []
+
+//clear button clears the screen
+function handleClear() {
+  clearNumberStorage()
+  renderDisplay()
+}
+
+//
+let clearButton = document.querySelector('.clear')
+
+//next add the eventListener for the click evnet
+clearButton.addEventListener('click', handleClear)
+//then call a function that will clear the input
+
+let addButton = document.querySelector('.add');
+let minusButton = document.querySelector('.minus');
+let multiplyButton = document.querySelector('.multiply');
+let divideButton = document.querySelector('.divide');
+
+function UseOperator() {
+  if (numberStorage.includes('+')) {
+    addProblem();
+    numberStorage = []
+    console.log('it worked');
+  } else if (numberStorage.includes ('-')) {
+    minusProblem();
+    numberStorage = []
+    console.log('does this work');
+  } else if (numberStorage.includes('x')){
+    multiplyProblem();
+    // numberStorage = [] DOES THIS NEED TO BE ADDED
+  } else if (numberStorage.includes('/')) {
+    divideProblem();
+  }
+
+}
+
+addButton.addEventListener('click',
+handleNumberOrOperatorClick)
+minusButton.addEventListener('click',
+handleNumberOrOperatorClick)
+multiplyButton.addEventListener('click',
+handleNumberOrOperatorClick)
+divideButton.addEventListener('click',
+handleNumberOrOperatorClick)
+
+function addProblem() {
+  let numbers = numberStorage.filter(item => item !== '+' )
+  let solution = parseInt(numbers[0]) + parseInt(numbers[1])
+  // for var i = -; i < numbers.length; i++) {
+  // solution = solution + parseInt(numbers[i])
+  // }
+  answerElement.innerText = solution
+}
+
+function minusProblem() {
+  let numbers = numberStorage.filter(item => item !== '-' )
+  let solution = numbers[0] - numbers[1]
+  //for (var i = 0; i < numbers.length; i++ ) {
+  // solution = solution - parseInt(numbers[i])
+  // }
+  answerElement.innerText = solution
+}
+
+function multiplyProblem() {
+  let numbers = numberStorage.filter(item => item !== 'x' )
+  console.log(numbers)
+  let solution = numbers[0] * numbers[1]
+  //for var i = 0; i < numbers.length; i++) {
+  //solution = solution * parseInt(number[i])
+  //}
+  answerElement.innerText = solution
+}
+
+function divideProblem() {
+  let numbers = numberStorage.filter(item => item !== '/' )
+  let solution = solution / parseInt(numbers[i])
+  //for var( i = 0; i < numbers.length; i++) {
+  // solution = solution / parseInt(numbers[i])
+  // }
+  answerElement.innerText = solution
+}
+
+let equalsButton = document.querySelector('#equals')
+
+equalsButton.addEventListener('click', UseOperator)
 
 
 
-
-
-
-
-
-
-
+////////////////////////////////////////////////////////////////////////////
 // //I want to click a number button and make it display in the window
 //
 //
