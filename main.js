@@ -5,10 +5,6 @@ function addStringToStorage(event) {
   console.log(numberStorage);
 }
 
-function clearNumStorage() {
-  numberStorage = []
-}
-
 // show number in display
 //[9, 4, 2] would be 942
 
@@ -33,7 +29,7 @@ let numberStorage = []
 
 //clear button clears the screen
 function handleClear() {
-  clearNumberStorage()
+  numberStorage = []
   renderDisplay()
 }
 
@@ -61,7 +57,7 @@ function UseOperator() {
   } else if (numberStorage.includes('x')){
     multiplyProblem();
     // numberStorage = [] DOES THIS NEED TO BE ADDED
-  } else if (numberStorage.includes('/')) {
+  } else if (numberStorage.includes('÷')) {
     divideProblem();
   }
 
@@ -105,8 +101,8 @@ function multiplyProblem() {
 }
 
 function divideProblem() {
-  let numbers = numberStorage.filter(item => item !== '/' )
-  let solution = solution / parseInt(numbers[i])
+  let numbers = numberStorage.filter(item => item !== '÷' )
+  let solution = numbers[0] / numbers[1]
   //for var( i = 0; i < numbers.length; i++) {
   // solution = solution / parseInt(numbers[i])
   // }
